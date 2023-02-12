@@ -12,6 +12,22 @@ const validateLoginAdminInput = require('../../validation/login-admin');
 // Load Model
 const Admin = require('../../models/Admin');
 
+
+router.get('/admin', (req, res) => {
+	Admin.findOne({name: "admin"})
+	.then(admin => {
+		if (admin) {
+			return res.json({
+				exists: true
+			});
+		} else {
+			return res.json({
+				exists: false
+			});
+		}
+	})
+});
+
 //@route	GET api/users/admin-register
 //@desc		Register admin
 //@access	Public

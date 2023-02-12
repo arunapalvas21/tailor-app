@@ -1,29 +1,37 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHome } from '@fortawesome/free-solid-svg-icons'
 
 class Navbar extends Component {
   render() {
 	return (
 		<nav className="navbar navbar-expand-sm navbar-dark bg-dark mb-4">
 		<div className="container">
-		  <a className="navbar-brand" href="landing.html">Tailoring Management System</a>
+		  <Link className="navbar-brand" to="/">
+		  <FontAwesomeIcon icon={faHome} />
+		  </Link>
 		  <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#mobile-nav">
 			<span className="navbar-toggler-icon"></span>
 		  </button>
 	
 		  <div className="collapse navbar-collapse" id="mobile-nav">
-			<ul className="navbar-nav mr-auto">
-			  <li className="nav-item">
-				<a className="nav-link" href="profiles.html"> Tailors
-				</a>
-			  </li>
+				<ul className="navbar-nav mr-auto">
+				<li className="nav-item">
+					<Link className="nav-link" href="profiles.html">Tailors
+					</Link>
+				</li>
 			</ul>
 	
 			<ul className="navbar-nav ml-auto">
 			  <li className="nav-item">
-				<a className="nav-link" href="register.html">Sign Up</a>
+				<Link className="nav-link" to="/register">Sign Up</Link>
 			  </li>
 			  <li className="nav-item">
-				<a className="nav-link" href="login.html">Login</a>
+				<Link className="nav-link" to="/login">Login</Link>
+			  </li>
+			  <li className="nav-item">
+				<Link className="nav-link" to="/admin">Admin</Link>
 			  </li>
 			</ul>
 		  </div>

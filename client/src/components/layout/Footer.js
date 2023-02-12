@@ -1,9 +1,10 @@
-import React from 'react'
+// import { faAlignCenter } from '@fortawesome/free-solid-svg-icons'
+import React from 'react';
 
-export default function Footer() {
+export default () => {
   return (
-	<footer className="bg-dark text-white mt-5 p-4 text-center">
-		Copyright &copy; {new Date().getFullYear()} TailorsConnector
+	<footer className="bg-dark text-white mt-5 p-4 text-center" >
+		Copyright &copy; {new Date().getFullYear()} TailorApp
 	</footer>
-  );
-};
+  )
+}
