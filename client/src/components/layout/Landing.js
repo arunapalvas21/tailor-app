@@ -15,7 +15,7 @@ class Landing extends Component {
 					<p className="lead"> Application to help tailors to manage the customers</p>
 					<hr />
 					<Link to="/register" className="btn btn-lg btn-info mr-2">Sign Up</Link>
-					<Link to="/login" className="btn btn-lg btn-light">Login</Link>
+					<Link to="/login" className="btn btn-lg btn-info mr-2">Login</Link>
 				</div>
 				</div>
 			</div>

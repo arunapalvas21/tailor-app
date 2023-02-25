@@ -11,7 +11,7 @@ async function setAdminExists() {
 	exists = res.data.exists
 	return res.data
 }
-
+  
 class Admin extends Component {
 	render() {
 		let pageContent;
