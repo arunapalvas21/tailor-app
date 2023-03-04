@@ -1,26 +1,30 @@
 import React, { Component } from 'react'
-import axios from 'axios';
-
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import AdminRegister from './Register';
 import AdminLogin from './Login';
-
-var exists = false;
-
-async function setAdminExists() {
-	const res = await axios.get('http://localhost:5000/api/users/admin')
-	exists = res.data.exists
-	return res.data
-}
+import { IsAdminExists } from '../../actions/authActions';
   
 class Admin extends Component {
+	constructor() {
+		super();
+		this.state = {
+			errors: {}
+		};
+	}
+
+	componentDidMount() {
+		this.props.IsAdminExists()
+	}
+
 	render() {
 		let pageContent;
 
-		setAdminExists().then(res => console.log(res.exists))
+		const { adminExists } = this.props.auth
 
 		pageContent = (
 			<div>
-				{exists ? (
+				{adminExists ? (
 					<AdminLogin />
 				) : (
 					<AdminRegister />
@@ -38,4 +42,15 @@ class Admin extends Component {
 	}
 }
 
-export default Admin; 
+Admin.propTypes = {
+	IsAdminExists: PropTypes.func.isRequired,
+	auth: PropTypes.object.isRequired,
+	errors: PropTypes.object.isRequired
+};
+
+const mapStateToProps = (state) => ({
+	auth: state.auth,
+	errors: state.errors
+})
+
+export default connect(mapStateToProps, { IsAdminExists })(Admin); 

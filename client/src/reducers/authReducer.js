@@ -1,9 +1,10 @@
 import isEmpty from '../validation/is-empty';
-import { SET_CURRENT_USER } from '../actions/types'
+import { ADMIN_EXIST, SET_CURRENT_USER } from '../actions/types'
 
 const initialState = {
 	isAuthenticated: false,
-	user: {}
+	user: {},
+	adminExists: false
 };
 
 export default function(state = initialState, action) {
@@ -13,6 +14,11 @@ export default function(state = initialState, action) {
 				...state,
 				isAuthenticated: !isEmpty(action.payload),
 				user: action.payload
+			}
+		case ADMIN_EXIST:
+			return {
+				...state,
+				adminExists: action.payload.exists
 			}
 		default: 
 			return state;

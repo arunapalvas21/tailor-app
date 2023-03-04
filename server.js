@@ -7,7 +7,10 @@ const passport = require('passport');
 const cors = require('cors');
 
 const users = require('./routes/api/users');
-const admin = require('./routes/api/admin')
+const admin = require('./routes/api/admin');
+const tailors = require('./routes/api/tailors');
+const dresslists = require('./routes/api/dresslists');
+const customers = require('./routes/api/customers');
 
 const app = express();
 
@@ -38,6 +41,9 @@ require('./config/passport')(passport);
 //use routes
 app.use('/api/users', users);
 app.use('/api/users', admin);
+app.use('/api/tailors', tailors);
+app.use('/api/dresslists', dresslists);
+app.use('/api/customers', customers);
 
 
 const port = process.env.PORT || 5000;

@@ -1,12 +1,14 @@
 import { combineReducers } from 'redux';
-import userauthReducer from './userauthReducer';
-import adminauthReducer from './adminauthReducer';
+import authReducer from './authReducer';
 import errorReducer from './errorReducer';
-
+import profileReducer from './profileReducer';
+import dresslistReducer from './dresslistReducer';
+import customerReducer from './customerReducer';
 
 export  default combineReducers({
-	auth: userauthReducer,
-	adminauth: adminauthReducer,
-	errors: errorReducer
-
-});
+	auth: authReducer,
+	profiles: profileReducer,
+	errors: errorReducer,
+	dress: dresslistReducer,
+	cust: customerReducer
+}); 
