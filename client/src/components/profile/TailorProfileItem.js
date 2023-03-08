@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-
+import { connect } from 'mongoose';
+import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
-// import { deleteExperience } from '../../actions/profileActions';
 
 class TailorProfileItem extends Component {
-	// onDeleteClick(id) {
-	// 	this.props.deleteExperience(id);
+	// onDeleteClick(e) {
+	// 	this.props.deleteTailor();
 	// }
 
 	render() {
@@ -17,10 +17,10 @@ class TailorProfileItem extends Component {
 				<td>{profile.date}</td>
 				<td>
 				<FontAwesomeIcon icon={faTrash}
-					// onClick={this.onDeleteClick.bind(this, exp._id)}
+					onClick={this.onDeleteClick.bind(this)}
 				/>
 				{/* <button
-					// onClick={this.onDeleteClick.bind(this, exp._id)}
+					// onClick={this.onDeleteClick.bind(this, profile)}
 					className="btn btn-danger"
 				>
 					Delete
@@ -49,8 +49,12 @@ class TailorProfileItem extends Component {
 }
 
 // TailorProfileItem.propTypes = {
-//   deleteExperience: PropTypes.func.isRequired
+// 	profiles: PropTypes.object.isRequired,
+// 	deleteTailor: PropTypes.func.isRequired
 // };
+// const mapStateToProps = state => ({
+// 	profiles: state.profiles
+// })
 
-// export default connect(null, { deleteExperience })(TailorProfileItem);
+// export default connect(mapStateToProps, { deleteTailor })(TailorProfileItem);
 export default TailorProfileItem

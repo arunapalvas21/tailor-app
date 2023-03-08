@@ -24,7 +24,7 @@ router.get('/user/:user_id', (req, res) => {
 	const errors = {};
 
 	Order.find({ user: req.params.user_id })
-	.populate('user', ['name'])
+	// .populate('user', ['name', 'email'])
 	.then(orders => {
 		if (!orders) {
 		errors.noorders = 'There is no orders for this tailor';
@@ -76,30 +76,48 @@ router.post('/create', passport.authenticate('jwt', { session: false }), (req, r
 		return res.status(400).json(errors);
 	}
 
-	Order.findOne({Customer: req.params.phone} && {Customer: req.params.name})
-		.then(orders => {
-			if(!orders) {
-				errors.customer = "Customer Not Found";
-				return res.status(400).json(errors);
-			} else {
-				const newOrder = new Order({	
-					customer: {
-						name: req.body.name,
-						phone: req.body.phone,
-					},
-					dressType: {
-						name: req.body.name
-					},
-					delivery_date: req.body.delivery_date,
-					order_status: req.body.order_status,
-					note: req.body.note
+	const newOrder = new Order({	
+		customer: {
+			name: req.body.name,
+			phone: req.body.phone,
+		},
+		dressType: {
+			name: req.body.name
+		},
+		delivery_date: req.body.delivery_date,
+		order_status: req.body.order_status,
+		note: req.body.note
 
-				});
-				newOrder.save()
-					.then(orders => res.json(orders))
-					.catch(err => console.log(err));
+	});
+	newOrder.save()
+		.then(orders => res.json(orders))
+		.catch(err => console.log(err));
+});
+
+//@route	GET api/orders/get-customer
+//@desc		get customer id, name
+//@access	Private
+router.post('/get-customer', (req, res) => {
+	const { errors, isValid } = validateOrderInput(req.body);
+
+	//Check Validation
+	if(!isValid){
+		return res.status(400).json(errors);
+	}
+
+	const phone = req.body.phone;
+	
+
+	//Find Customer by phone no
+	Customer.findOne({phone})
+		.then(customer => {
+			//check for customer
+			if(!customer) {
+				errors.phone = 'Phone Number does not exist';
+				return res.status(404).json(errors);
 			}
-		})
+			res.json(customer);
+	});
 });
 
 

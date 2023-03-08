@@ -30,6 +30,26 @@ router.post('/create', passport.authenticate('jwt', { session: false }), (req, r
 					name: req.body.name,
 					phone: req.body.phone,
 					gender: req.body.gender,	
+					upper: {
+						neck: req.body.neck,
+						shoulder: req.body.shoulder,
+						fullarm: req.body.fullarm,
+						halfarm: req.body.halfarm,
+						sleeve: req.body.sleeve,
+						wrist: req.body.wrist,
+						elbow: req.body.elbow,
+						chest: req.body.chest,
+						hip: req.body.hip,
+						body: req.body.body
+					},
+					lower: {
+						thigh: req.body.thigh,
+						knee: req.body.knee,
+						seat: req.body.seat,
+						leg_half: req.body.leg_half,
+						leg_full: req.body.leg_full,
+						ankle: req.body.ankle
+					}
 				});
 				newCustomer.save()
 					.then(customers => res.json(customers))
@@ -37,67 +57,6 @@ router.post('/create', passport.authenticate('jwt', { session: false }), (req, r
 			}
 		})
 });
-
-//@route	POST api/customers/uppersize
-//@desc		Add Upper size
-//@access	private
-router.post('/uppersize', passport.authenticate('jwt', { session: false }), (req, res) => {
-	const { errors, isValid } = validateCustomerInput(req.body);
-
-	//Check Validation
-	if(!isValid){
-		return res.status(400).json(errors);
-	}
-
-	Customer.findOne({ customer: req.customer.id }).then(customers => {
-		const newSize = {
-		  neck: req.body.neck,
-		  shoulder: req.body.shoulder,
-		  fullarm: req.body.fullarm,
-		  halfarm: req.body.halfarm,
-		  sleeve: req.body.sleeve,
-		  wrist: req.body.wrist,
-		  elbow: req.body.elbow,
-		  chest: req.body.chest,
-		  hip: req.body.hip,
-		  body: req.body.body
-		};
-  
-		// Add to exp array
-		customers.upper.unshift(newSize);
-		customers.save().then(customers => res.json(customers));
-    });
-  }
-);
-
-
-//@route	POST api/customers/lowesize
-//@desc		Add lower size
-//@access	private
-router.post('/lowesize', passport.authenticate('jwt', { session: false }), (req, res) => {
-	const { errors, isValid } = validateCustomerInput(req.body);
-
-	//Check Validation
-	if(!isValid){
-		return res.status(400).json(errors);
-	}
-
-	Customer.findOne({ customer: req.customer.id }).then(customers => {
-		const newSize = {
-		  thigh: req.body.thigh,
-		  knee: req.body.knee,
-		  seat: req.body.seat,
-		  leg_half: req.body.leg_half,
-		  leg_full: req.body.leg_full,
-		  ankle: req.body.ankle
-		};
-  
-		// Add to exp array
-		customers.lower.unshift(newSize);
-		customers.save().then(customers => res.json(customers));
-    });
-  }
-);
 
 // @route   GET api/customers/all
 // @desc    Get all customers

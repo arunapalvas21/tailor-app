@@ -34,33 +34,8 @@ export const createCustomers = (customer, history) => dispatch => {
 	);
 };
 
-// Add upper size
-export const addUppersize = (uppersize, history) => dispatch => {
-	axios
-	.post('/api/customers/uppersize', uppersize)
-	.then(res => history.push('/customers'))
-	.catch(err =>
-		dispatch({
-		type: GET_ERRORS,
-		payload: err.response.data
-		})
-	);
-};
 
-// Add lower size
-export const addLowersize = (lowersize, history) => dispatch => {
-	axios
-	.post('/api/customers/lowersize', lowersize)
-	.then(res => history.push('/customers'))
-	.catch(err =>	
-		dispatch({
-		type: GET_ERRORS,
-		payload: err.response.data
-		})
-	);
-};
-
-// Profile loading
+// Customer loading
 export const setCustomersLoading = () => {
 	return {
 	  type: CUSTOMERS_LOADING

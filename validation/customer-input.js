@@ -5,7 +5,7 @@ module.exports = function validateCustomerInput(data) {
 	let errors = {};
 	
 	data.name = !isEmpty(data.name) ? data.name : '';
-	data.phoneNo = !isEmpty(data.phoneNo) ? data.phoneNo : '';
+	data.phone = !isEmpty(data.phone) ? data.phone : '';
 	data.gender = !isEmpty(data.gender) ? data.gender : '';
 	
 	if(!Validator.isLength(data.name, { min: 2, max: 30})){
@@ -16,12 +16,12 @@ module.exports = function validateCustomerInput(data) {
 		errors.name = 'Name field is required';
 	}
 
-	if(!Validator.isLength(data.phoneNo, { min: 10, max: 10})){
-		errors.phoneNo = 'Phone Number is not valid';
+	if(!Validator.isLength(data.phone, { min: 10, max: 10})){
+		errors.phone = 'Phone Number is not valid';
 	}
 
-	if(Validator.isEmpty(data.phoneNo)) {
-		errors.phoneNo = 'Phone Number field is required';
+	if(Validator.isEmpty(data.phone)) {
+		errors.phone = 'Phone Number field is required';
 	}
 
 	if(Validator.isEmpty(data.gender)) {

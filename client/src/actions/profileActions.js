@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_TAILORS_PROFILE, PROFILE_LOADING, CLEAR_CURRENT_PROFILE } from './types';
+import { GET_TAILORS_PROFILE, PROFILE_LOADING, CLEAR_CURRENT_PROFILE, SET_CURRENT_USER, GET_ERRORS } from './types';
 
 // Get all tailor profiles
 export const getTailorsProfile = () => dispatch => {
@@ -20,6 +20,28 @@ export const getTailorsProfile = () => dispatch => {
 		})}
 	);
 };
+
+// // Delete TailorProfile
+// export const deleteTailor = () => dispatch => {
+// 	if(window.confirm('Are you sure? This can not be undone!')) {
+// 		axios
+// 			.delete('/api/tailors')
+// 			.then(res => { 
+// 				dispatch({
+// 					type: SET_CURRENT_USER,
+// 					payload: {}
+// 				})
+// 			}
+// 		)
+// 			.catch(err =>
+// 				dispatch({
+// 					type: GET_ERRORS,
+// 					payload: err.response.data
+// 				})
+// 			);
+// 	}
+// }
+
 
 // Profile loading
 export const setProfileLoading = () => {

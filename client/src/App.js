@@ -5,6 +5,9 @@ import setUserAuthToken from './utils/setAuthToken';
 import { setCurrentUser, logoutUser } from './actions/authActions';
 import { clearCurrentProfile } from './actions/profileActions';
 import { getDresslists } from './actions/dresslistActions';
+import { getCustomers } from './actions/customerActions';
+import { getOrders } from './actions/orderActions';
+
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import { Provider } from 'react-redux';
 import store from './store';
@@ -23,6 +26,9 @@ import Dresslist from './components/dresslist/Dresslist';
 import PrivateRoute from './components/common/PrivateRoute'
 import AddDresstypes from './components/add-new/AddDresstypes';
 import CustomerList from './components/customer/CustomerList';
+import CreateCustomer from './components/add-new/CreateCustomer';
+import AllOrders from './components/order/AllOrders';
+
 
 import './App.css';
 
@@ -44,6 +50,8 @@ if(localStorage.jwtToken) {
 		store.dispatch(clearCurrentProfile());
 		// Get dress lists
 		store.dispatch(getDresslists());
+		store.dispatch(getCustomers());
+		store.dispatch(getOrders());
 		// Redirect to login
 		window.location.href = '/login';
 	}
@@ -77,6 +85,12 @@ class App extends Component {
 							</Switch>
 							<Switch>
 								<PrivateRoute exact path="/customers" component={CustomerList} />
+							</Switch>
+							<Switch>
+								<PrivateRoute exact path="/create-customers" component={CreateCustomer} />
+							</Switch>
+							<Switch>
+								<PrivateRoute exact path="/all" component={AllOrders} />
 							</Switch>
 						</div>
 						<Footer />

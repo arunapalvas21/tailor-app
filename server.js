@@ -1,5 +1,3 @@
-//entry point file
-
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -11,6 +9,7 @@ const admin = require('./routes/api/admin');
 const tailors = require('./routes/api/tailors');
 const dresslists = require('./routes/api/dresslists');
 const customers = require('./routes/api/customers');
+const orders = require('./routes/api/orders');
 
 const app = express();
 
@@ -44,6 +43,7 @@ app.use('/api/users', admin);
 app.use('/api/tailors', tailors);
 app.use('/api/dresslists', dresslists);
 app.use('/api/customers', customers);
+app.use('/api/orders', orders);
 
 
 const port = process.env.PORT || 5000;

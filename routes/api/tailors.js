@@ -1,16 +1,15 @@
 const express = require('express');
 const router = express.Router();
 // const bcrypt = require('bcryptjs');
-// const passport = require('passport');
+const passport = require('passport');
 
 // Load Model
 const User = require('../../models/User');
-// const Tailor = require('../../models/Tailor');
 
 //@route	GET api/tailor/all
 //@desc		Get all tailors
-//@access	Public
-router.get('/all', (req, res) => {
+//@access	Private
+router.get('/all', passport.authenticate('jwt', { session: false }), (req, res) => {
 	User.find()
 	.then(users => {
 		if (!users) {
@@ -21,5 +20,21 @@ router.get('/all', (req, res) => {
 	})
 	.catch(err => res.status(404).json({ profile: 'There are no profiles' }));
 });
+
+
+// @route   DELETE api/tailor
+// @desc    Delete tailor profile
+// @access  Private
+router.delete(
+	'/',
+	passport.authenticate('jwt', { session: false }),
+	(req, res) => {
+	  User.findOneAndRemove({ user: req.user.id }).then(() => {
+		User.findOneAndRemove({ _id: req.user.id }).then(() =>
+		  res.json({ success: true })
+		);
+	  });
+	}
+  );
 
 module.exports = router;

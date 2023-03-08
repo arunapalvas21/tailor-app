@@ -1,4 +1,5 @@
-import { GET_TAILORS_PROFILE, PROFILE_LOADING, CLEAR_CURRENT_PROFILE } from '../actions/types'
+import isEmpty from '../validation/is-empty';
+import { GET_TAILORS_PROFILE, PROFILE_LOADING, CLEAR_CURRENT_PROFILE, SET_CURRENT_USER } from '../actions/types'
 
 const initialState = {
 	loading: false,
@@ -18,12 +19,18 @@ export default function(state = initialState, action) {
 			return {
 				...state,
 				loading: true
-			};
+			}
+		case SET_CURRENT_USER:
+			return {
+				...state,
+				isAuthenticated: !isEmpty(action.payload),
+				user: action.payload
+			}
 		case CLEAR_CURRENT_PROFILE:
 			return {
 				...state,
 				profile: null
-			};
+			}
 		default: 
 			return state;
 	}

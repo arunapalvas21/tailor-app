@@ -4,11 +4,16 @@ import PropTypes from 'prop-types';
 import Spinner from '../common/Spinner';
 import TailorProfileItem from './TailorProfileItem';
 import { getTailorsProfile } from '../../actions/profileActions';
+// import { deleteTailor } from '../../actions/profileActions';
 
 class TailorProfiles extends Component {
 	componentDidMount() {
 		this.props.getTailorsProfile();
 	}
+
+	// onDeleteClick(e) {
+	// 	this.props.deleteTailor();
+	// }
 
 	render() {
 		const { tailors, loading } = this.props.profiles;
@@ -42,6 +47,7 @@ class TailorProfiles extends Component {
 
 TailorProfiles.propTypes = {
 	getTailorsProfile: PropTypes.func.isRequired,
+	// deleteTailor: PropTypes.func.isRequired,
 	profiles: PropTypes.object.isRequired
 };
 

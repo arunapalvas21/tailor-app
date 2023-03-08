@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser} from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 // import { deleteExperience } from '../../actions/profileActions';
 
 import Customer from './Customer';
@@ -19,6 +22,16 @@ class CustomerListItem extends Component {
 				<div className="col-md-9">
 					<h4 className="mb-4">Customers</h4>
 				</div>
+				<div className="col-md-3">
+					
+						<Link to="/create-customers">
+							<div className="btn btn-outline-info">
+								<FontAwesomeIcon icon= {faUser} />
+								<span>   New Customer</span>
+							</div>
+						</Link>
+					
+					</div>
 			</div>
 			
 			<ul className="list-group mb-0">

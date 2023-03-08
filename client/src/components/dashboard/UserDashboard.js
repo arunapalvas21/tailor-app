@@ -21,12 +21,14 @@ class UserDashboard extends Component {
 UserDashboard.propTypes = {
 	auth: PropTypes.object.isRequired,
 	cust: PropTypes.object.isRequired,
+	order: PropTypes.object.isRequired,
 	errors: PropTypes.object.isRequired
 };
 
 const mapStateToProps = (state) => ({
 	auth: state.auth,
 	cust: state.cust,
+	order: state.order,
 	errors: state.errors
 });
 
